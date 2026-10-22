@@ -1,0 +1,143 @@
+/* ============================================================
+   CV Digital - Estilos optimizados para impresión / exportar PDF
+   Se activan al imprimir la vista de perfil (Ctrl+P o botón Imprimir CV)
+   ============================================================ */
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 12mm;
+  }
+
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    font-size: 12px;
+  }
+
+  .navbar,
+  .nav-movil,
+  #pie-pagina,
+  .toasts,
+  #modal-raiz,
+  #lightbox-raiz,
+  .acciones-cv,
+  .admin-sidebar,
+  .panel-filtros,
+  .saltar-contenido,
+  .btn,
+  .banner-aviso,
+  .banner-info {
+    display: none !important;
+  }
+
+  .contenedor-pagina {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .cabecera-perfil {
+    background: #fff !important;
+    color: #111 !important;
+    border: 2px solid #111;
+    border-radius: 0;
+    padding: 10mm !important;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .cabecera-perfil h1 {
+    color: #111 !important;
+    font-size: 22px;
+  }
+
+  .cabecera-perfil p,
+  .cabecera-perfil .texto-suave {
+    color: #333 !important;
+  }
+
+  .cabecera-perfil img.foto-perfil {
+    border-color: #999;
+    width: 110px;
+    height: 110px;
+  }
+
+  .enlaces-sociales a {
+    background: none !important;
+    color: #111 !important;
+    border: 1px solid #999;
+    padding: 2px 8px;
+  }
+
+  .panel {
+    border: 1px solid #bbb !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 8px 12px !important;
+    page-break-inside: avoid;
+  }
+
+  .panel h2 {
+    font-size: 15px !important;
+    border-bottom: 2px solid #111;
+    padding-bottom: 4px;
+    color: #111 !important;
+  }
+
+  .tarjeta {
+    border: 1px solid #bbb !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    border-radius: 0 !important;
+  }
+
+  .cronologia::before {
+    background: #555 !important;
+  }
+
+  .cronologia li::before {
+    border-color: #111 !important;
+  }
+
+  .badge,
+  .etiqueta-suave {
+    border: 1px solid #999;
+    background: none !important;
+    color: #111 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .barra-nivel {
+    border: 1px solid #999;
+    background: #fff;
+  }
+
+  .barra-nivel > div {
+    background: #333 !important;
+  }
+
+  a {
+    color: #111 !important;
+    text-decoration: none !important;
+  }
+
+  .seccion {
+    page-break-inside: avoid;
+  }
+
+  /* Encabezado de documento impreso */
+  .pie-impresion::after {
+    content: "Documento generado por Informática Destaca · Licenciatura en Informática";
+    display: block;
+    margin-top: 10mm;
+    padding-top: 4mm;
+    border-top: 1px solid #999;
+    font-size: 10px;
+    color: #555;
+    text-align: center;
+  }
+}

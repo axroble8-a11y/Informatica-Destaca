@@ -1,0 +1,10 @@
+{
+  "name": "informatica-destaca-frontend",
+  "version": "1.0.0",
+  "description": "Frontend SPA de Informática Destaca - HTML5, CSS3 y JavaScript ES6+ sin pasos de compilación",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "MIT"
+}
