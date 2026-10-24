@@ -35,13 +35,6 @@ export async function vistaLogin(contenedor) {
         <p class="texto-centrado mt-2 texto-pequeno">
           ¿No tienes cuenta? <a href="#/registro">Regístrate como estudiante</a>
         </p>
-
-        <div class="demo-credenciales mt-2">
-          <strong>Cuentas de demostración</strong><br />
-          Administrador: <code>admin@informatica.edu</code> / <code>Admin123*</code><br />
-          Responsable: <code>responsable@informatica.edu</code> / <code>Responsable123*</code><br />
-          Estudiante: <code>estudiante@informatica.edu</code> / <code>Estudiante123*</code>
-        </div>
       </div>
     </div>
   `;
