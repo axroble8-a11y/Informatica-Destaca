@@ -22,9 +22,9 @@ const fecha = (iso) => new Date(iso);
 
 const datos = {
   usuarios: [
-    { nombre: 'Coordinación Académica', email: 'admin@informatica.edu', password: 'Admin123*', rol: 'administrador' },
-    { nombre: 'Laura Mendoza Pineda', email: 'responsable@informatica.edu', password: 'Responsable123*', rol: 'responsable' },
-    { nombre: 'Ana Sofía Ramírez Vega', email: 'estudiante@informatica.edu', password: 'Estudiante123*', rol: 'estudiante', matricula: 'ISR-2201' },
+    { nombre: 'Coordinación Académica', email: 'admin@informatica.edu', password: process.env.ADMIN_INITIAL_PASSWORD || (process.env.NODE_ENV === 'production' ? '' : 'Admin123*'), rol: 'administrador' },
+    { nombre: 'Laura Mendoza Pineda', email: 'responsable@informatica.edu', password: process.env.RESPONSABLE_INITIAL_PASSWORD || (process.env.NODE_ENV === 'production' ? '' : 'Responsable123*'), rol: 'responsable' },
+    { nombre: 'Ana Sofía Ramírez Vega', email: 'estudiante@informatica.edu', password: process.env.STUDENT_INITIAL_PASSWORD || (process.env.NODE_ENV === 'production' ? '' : 'Estudiante123*'), rol: 'estudiante', matricula: 'ISR-2201' },
   ],
 
   estudiantes: [
