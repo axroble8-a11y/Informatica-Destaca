@@ -11,10 +11,10 @@ export function renderFooter() {
               <img src="/public/img/logo-blanco.svg" alt="Logotipo Informática Destaca" />
               <div>
                 <strong style="color:#fff">Informática Destaca</strong>
-                <div class="texto-pequeno" style="color:#d9c9a3">Plataforma de reconocimiento, eventos y trayectoria estudiantil</div>
+                <div class="texto-pequeno" style="color:var(--pantone-468c)">Plataforma de reconocimiento, eventos y trayectoria estudiantil</div>
               </div>
             </div>
-            <p class="texto-pequeno" style="max-width:420px; color:#d9c9a3">
+            <p class="texto-pequeno" style="max-width:420px; color:var(--pantone-468c)">
               Difundimos los logros de nuestra comunidad estudiantil, administramos eventos académicos
               y tecnológicos, y construimos un historial verificable que integra el currículum digital
               de cada estudiante de la Licenciatura en Informática.
@@ -29,14 +29,13 @@ export function renderFooter() {
               <li><a href="#/eventos">Eventos</a></li>
               <li><a href="#/galeria">Galería multimedia</a></li>
               <li><a href="#/buscador">Buscador</a></li>
+              <li><a href="#/demostracion">Flujo de demostración</a></li>
             </ul>
           </div>
 
           <div>
-            <h4>Contacto institucional</h4>
+            <h4>Información</h4>
             <ul>
-              <li>${icon('map-pin')} Edificio de Ingeniería, Campus Universitario</li>
-              <li>${icon('mail')} <a href="mailto:informatica.destaca@utv.edu">informatica.destaca@utv.edu</a></li>
               <li>${icon('globe')} <a href="#/aviso-privacidad">Aviso de privacidad</a></li>
               <li>${icon('shield')} <a href="#/login">Acceso administrativo</a></li>
             </ul>

@@ -101,7 +101,10 @@ async function resolver() {
 function marcarEnlaceActivo(hashLimpio) {
   document.querySelectorAll('[data-nav]').forEach((a) => {
     const destino = a.getAttribute('href').replace('#', '');
-    const activo = destino === hashLimpio || (destino !== '/' && hashLimpio.startsWith(destino));
+    const alias = (a.dataset.navAliases || '').split(',').filter(Boolean);
+    const activo = destino === hashLimpio
+      || alias.includes(hashLimpio)
+      || (destino !== '/' && hashLimpio.startsWith(destino));
     a.classList.toggle('activo', activo);
   });
 }

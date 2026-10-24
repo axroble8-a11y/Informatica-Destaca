@@ -19,6 +19,7 @@ import { vistaBuscador } from './views/buscador.js';
 import { vistaLogin } from './views/login.js';
 import { vistaRegistro } from './views/registro.js';
 import { vistaAvisoPrivacidad } from './views/avisoPrivacidad.js';
+import { vistaDemostracion } from './views/demostracion.js';
 import { vistaNotFound } from './views/notFound.js';
 
 import { vistaDashboard } from './admin/dashboard.js';
@@ -52,6 +53,7 @@ async function main() {
   registrar('/login', { vista: vistaLogin });
   registrar('/registro', { vista: vistaRegistro });
   registrar('/aviso-privacidad', { vista: vistaAvisoPrivacidad });
+  registrar('/demostracion', { vista: vistaDemostracion });
 
   // Espacio del estudiante autenticado
   registrar('/mi-espacio', { vista: vistaMiEspacio, protegida: true, roles: ['estudiante'] });

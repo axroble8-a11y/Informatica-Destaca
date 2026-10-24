@@ -13,10 +13,10 @@ export async function vistaDashboard(contenedor) {
     const c = estadisticas?.cifras || {};
 
     const tarjetas = [
-      { icono: 'users', color: 'linear-gradient(135deg,#4f46e5,#7c3aed)', valor: c.estudiantes ?? '—', rotulo: 'Estudiantes publicados' },
-      { icono: 'calendar', color: 'linear-gradient(135deg,#0891b2,#2563eb)', valor: c.eventos ?? '—', rotulo: 'Eventos registrados' },
-      { icono: 'trophy', color: 'linear-gradient(135deg,#d97706,#dc2626)', valor: c.logros ?? '—', rotulo: 'Logros aprobados' },
-      { icono: 'image', color: 'linear-gradient(135deg,#059669,#0d9488)', valor: c.galeria ?? '—', rotulo: 'Fotografías en galería' },
+      { icono: 'users', color: 'linear-gradient(135deg,var(--pantone-7421c),var(--pantone-7420c))', valor: c.estudiantes ?? '—', rotulo: 'Estudiantes publicados' },
+      { icono: 'calendar', color: 'linear-gradient(135deg,var(--pantone-7420c),var(--pantone-7421c))', valor: c.eventos ?? '—', rotulo: 'Eventos registrados' },
+      { icono: 'trophy', color: 'linear-gradient(135deg,var(--pantone-465c),var(--pantone-468c))', valor: c.logros ?? '—', rotulo: 'Logros aprobados' },
+      { icono: 'image', color: 'linear-gradient(135deg,var(--pantone-7421c),var(--pantone-465c))', valor: c.galeria ?? '—', rotulo: 'Fotografías en galería' },
     ];
 
     const resumenPendientes = aprobaciones

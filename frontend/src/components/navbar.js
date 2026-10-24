@@ -1,14 +1,14 @@
-import { sesion, cerrarSesionLocal, esStaff, esAdmin, rolEtiqueta } from '../js/auth.js';
+import { sesion, cerrarSesionLocal, rolEtiqueta } from '../js/auth.js';
 import { icon, toast, iniciales, esc } from '../js/ui.js';
 import { navegar } from '../js/router.js';
 
-const ENLACES = [
-  { ruta: '/', texto: 'Inicio', icono: 'home' },
-  { ruta: '/cuadro-honor', texto: 'Cuadro de Honor', icono: 'trophy' },
-  { ruta: '/perfiles', texto: 'Estudiantes', icono: 'users' },
-  { ruta: '/eventos', texto: 'Eventos', icono: 'calendar' },
-  { ruta: '/galeria', texto: 'Galería', icono: 'image' },
-  { ruta: '/buscador', texto: 'Buscador', icono: 'search' },
+const MODULOS = [
+  { ruta: '/', rutasActivas: ['/cuadro-honor'], texto: 'Inicio & Cuadro de Honor', icono: 'home' },
+  { ruta: '/buscador', texto: 'Buscador & Filtros', icono: 'search' },
+  { ruta: '/perfiles', texto: 'Perfil & CV Digital', icono: 'user' },
+  { ruta: '/eventos', rutasActivas: ['/galeria'], texto: 'Eventos & Galería', icono: 'calendar' },
+  { ruta: '/admin', texto: 'Gestión y Auditoría', icono: 'dashboard' },
+  { ruta: '/demostracion', texto: 'Flujo de Demostración', icono: 'check-circle' },
 ];
 
 function enlaceUsuario() {
@@ -20,10 +20,10 @@ function enlaceUsuario() {
   const u = sesion.usuario;
   const destino = u.rol === 'estudiante' ? '/mi-espacio' : '/admin';
   return `
-    <button class="usuario-chip" id="chip-usuario" title="${rolEtiqueta(u.rol)} — ${u.nombre}">
+    <span class="usuario-chip" title="${rolEtiqueta(u.rol)} — ${esc(u.nombre)}">
       <span class="avatar-mini">${esc(iniciales(u.nombre))}</span>
       <span class="oculto-movil">${esc(u.nombre.split(' ')[0])}</span>
-    </button>
+    </span>
     <a class="btn btn-secundario btn-sm" href="#${destino}" title="${destino === '/admin' ? 'Panel de administración' : 'Mi espacio'}">
       ${destino === '/admin' ? icon('dashboard') : icon('user')}
       <span class="oculto-movil">${destino === '/admin' ? 'Panel' : 'Mi espacio'}</span>
@@ -34,6 +34,15 @@ function enlaceUsuario() {
 
 export function renderNavbar() {
   const navbar = document.getElementById('navbar');
+  const modulosActivos = MODULOS.map((modulo) => {
+    if (modulo.ruta === '/admin' && sesion.usuario?.rol === 'estudiante') {
+      return { ...modulo, ruta: '/mi-espacio', texto: 'Mi espacio', icono: 'user' };
+    }
+    return modulo;
+  });
+  const enlacesModulos = modulosActivos.map(
+    (e) => `<li><a href="#${e.ruta}" data-nav${e.rutasActivas ? ` data-nav-aliases="${e.rutasActivas.join(',')}"` : ''}>${icon(e.icono)}<span>${esc(e.texto)}</span></a></li>`
+  ).join('');
   navbar.innerHTML = `
     <div class="portal-topline">
       <div class="contenedor portal-topline-inner">
@@ -51,57 +60,20 @@ export function renderNavbar() {
           </span>
         </a>
 
-        <ul class="nav-enlaces">
-          ${ENLACES.map(
-            (e) => `<li><a href="#${e.ruta}" data-nav>${esc(e.texto)}</a></li>`
-          ).join('')}
-        </ul>
+        <ul class="nav-enlaces" aria-label="Módulos principales">${enlacesModulos}</ul>
 
         <div class="nav-acciones">
           ${enlaceUsuario()}
-          <button class="nav-toggle" id="btn-menu" aria-label="Abrir menú" aria-expanded="false">
-            ${icon('menu')}
-          </button>
         </div>
       </div>
     </nav>
 
-    <div class="nav-movil" id="menu-movil">
-      ${ENLACES.map(
-        (e) => `<a href="#${e.ruta}" data-nav>${icon(e.icono)} ${esc(e.texto)}</a>`
-      ).join('')}
-      <div class="separador"></div>
-      ${
-        sesion.usuario
-          ? `<a href="#${sesion.usuario.rol === 'estudiante' ? '/mi-espacio' : '/admin'}">${icon('dashboard')} ${sesion.usuario.rol === 'estudiante' ? 'Mi espacio' : 'Panel de administración'}</a>
-             <a href="#" id="salir-movil">${icon('logout')} Cerrar sesión</a>`
-          : `<a href="#/login">${icon('lock')} Iniciar sesión</a>
-             <a href="#/registro">${icon('user')} Crear cuenta de estudiante</a>`
-      }
-    </div>
+    <nav class="portal-modulebar" aria-label="Navegación principal">
+      <ul>${enlacesModulos}</ul>
+    </nav>
   `;
 
-  // Interacciones
-  const btnMenu = navbar.querySelector('#btn-menu');
-  const menuMovil = navbar.querySelector('#menu-movil');
-  btnMenu?.addEventListener('click', () => {
-    const abierto = menuMovil.classList.toggle('abierto');
-    btnMenu.setAttribute('aria-expanded', String(abierto));
-    btnMenu.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
-  });
-  menuMovil?.querySelectorAll('a[href^="#"]').forEach((a) =>
-    a.addEventListener('click', () => {
-      menuMovil.classList.remove('abierto');
-      btnMenu?.setAttribute('aria-expanded', 'false');
-      btnMenu?.setAttribute('aria-label', 'Abrir menú');
-    })
-  );
-
   navbar.querySelector('#btn-salir')?.addEventListener('click', salir);
-  navbar.querySelector('#salir-movil')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    salir();
-  });
 }
 
 function salir() {

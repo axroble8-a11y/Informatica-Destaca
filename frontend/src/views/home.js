@@ -25,7 +25,7 @@ export async function vistaHome(contenedor) {
         <aside class="hero-insignia" aria-label="Distinción al mérito estudiantil">
           <div class="hero-insignia-cabecera">
             <span>${icon('award')} Distinción al mérito</span>
-            <span class="hero-insignia-sello">Portal oficial</span>
+            <span class="hero-insignia-sello">Mérito académico</span>
           </div>
           <div>
             <h2>Excelencia reconocida, trayectorias que inspiran</h2>

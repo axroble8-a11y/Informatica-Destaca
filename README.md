@@ -12,7 +12,7 @@ Toda la información pasa por un **flujo de revisión y aprobación** controlado
 
 | Capa | Tecnología |
 |---|---|
-| Frontend | HTML5, CSS3 (mobile-first, identidad Stitch con Pantone 7421 C `#691C32`, 7420 C `#9F2241`, 468 C `#D9C9A3` y 465 C `#C49953`), JavaScript ES6+ (SPA sin build, módulos nativos, router por hash); tipografías Inter, Plus Jakarta Sans y JetBrains Mono |
+| Frontend | HTML5, CSS3 (mobile-first, identidad Stitch con Pantone 7421 C `#691C32`, 7420 C `#9F2241`, 468 C `#DDC9A3` y 465 C `#C49953`), JavaScript ES6+ (SPA sin build, módulos nativos, router por hash); tipografías Inter, Plus Jakarta Sans y JetBrains Mono |
 | Backend | Node.js + Express 4, arquitectura modular (`routes → controllers → models`) |
 | Base de datos | MongoDB con Mongoose 8 (schemas normalizados, referencias pobladas, sin duplicación de datos) |
 | Autenticación | JWT (`jsonwebtoken`) + hash de contraseñas (`bcryptjs`) + roles y permisos por middleware |
@@ -52,7 +52,7 @@ informatica-destaca/
 │   │   ├── assets/css/        # styles.css (sistema de diseño) + print.css (CV imprimible)
 │   │   ├── components/        # navbar, footer, tarjetas, paginación
 │   │   ├── views/             # home, cuadro de honor, perfiles + CV, eventos, galería,
-│   │   │                      # buscador, login, registro, aviso de privacidad, mi espacio
+│   │   │                      # buscador, login, registro, aviso de privacidad, guía demo y mi espacio
 │   │   └── admin/             # panel: dashboard, CRUDs, usuarios, aprobaciones
 │   └── package.json
 └── README.md
@@ -247,6 +247,7 @@ Errores homogéneos: `{ "ok": false, "mensaje": "…", "errores": [{ "campo", "m
 - **Eventos**: agenda con filtros; el detalle muestra participantes y galería del evento.
 - **Galería**: clic en una tarjeta para abrir el lightbox (imágenes y videos embebidos).
 - **Buscador**: escribe y los resultados (estudiantes, eventos, logros) se actualizan al instante.
+- **Flujo de demostración**: guía de 10 pasos que abre los módulos reales, respeta los permisos de cada rol y no crea datos de prueba.
 
 ### Estudiante
 1. Regístrate desde **Iniciar sesión → Regístrate como estudiante** (tu perfil queda pendiente de aprobación).
