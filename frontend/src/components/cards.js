@@ -105,7 +105,7 @@ export function itemGaleria(evidencia, { abrirDetalle } = {}) {
   const cuerpo = esImagen
     ? `<img src="${esc(url)}" alt="${esc(evidencia.titulo)}" loading="lazy"
            onerror="this.src='/public/img/eventos/default.svg'" />`
-    : esVideo
+    : esVideo && evidencia.archivoUrl
       ? `<video src="${esc(url)}" muted preload="metadata"></video>`
       : `<img src="/public/img/eventos/default.svg" alt="${esc(evidencia.titulo)}" />`;
 
