@@ -11,10 +11,10 @@ export function renderFooter() {
               <img src="/public/img/logo-blanco.svg" alt="Logotipo Informática Destaca" />
               <div>
                 <strong style="color:#fff">Informática Destaca</strong>
-                <div class="texto-pequeno" style="color:#94a3b8">Plataforma de reconocimiento, eventos y trayectoria estudiantil</div>
+                <div class="texto-pequeno" style="color:#d9c9a3">Plataforma de reconocimiento, eventos y trayectoria estudiantil</div>
               </div>
             </div>
-            <p class="texto-pequeno" style="max-width:420px; color:#94a3b8">
+            <p class="texto-pequeno" style="max-width:420px; color:#d9c9a3">
               Difundimos los logros de nuestra comunidad estudiantil, administramos eventos académicos
               y tecnológicos, y construimos un historial verificable que integra el currículum digital
               de cada estudiante de la Licenciatura en Informática.

@@ -12,7 +12,7 @@ Toda la información pasa por un **flujo de revisión y aprobación** controlado
 
 | Capa | Tecnología |
 |---|---|
-| Frontend | HTML5, CSS3 (mobile-first, paleta Pantone 7421C/7420C/465C), JavaScript ES6+ (SPA sin build, módulos nativos, router por hash); tipografías Inter, Plus Jakarta Sans y JetBrains Mono |
+| Frontend | HTML5, CSS3 (mobile-first, identidad Stitch con Pantone 7421 C `#691C32`, 7420 C `#9F2241`, 468 C `#D9C9A3` y 465 C `#C49953`), JavaScript ES6+ (SPA sin build, módulos nativos, router por hash); tipografías Inter, Plus Jakarta Sans y JetBrains Mono |
 | Backend | Node.js + Express 4, arquitectura modular (`routes → controllers → models`) |
 | Base de datos | MongoDB con Mongoose 8 (schemas normalizados, referencias pobladas, sin duplicación de datos) |
 | Autenticación | JWT (`jsonwebtoken`) + hash de contraseñas (`bcryptjs`) + roles y permisos por middleware |

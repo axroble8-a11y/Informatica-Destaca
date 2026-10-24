@@ -10,7 +10,7 @@ export async function vistaHome(contenedor) {
           <span class="etiqueta-hero">${icon('graduate')} Portal institucional de honores y difusión tecnológica</span>
           <h1>Excelencia, Investigación y Liderazgo en <span class="codigo-mono">Informática</span></h1>
           <p>
-            Portal oficial para reconocer los logros de la comunidad, consultar eventos y construir
+            Portal institucional para reconocer los logros de la comunidad, consultar eventos y construir
             una trayectoria académica verificable como currículum digital.
           </p>
           <div class="grupo-botones">
@@ -22,13 +22,30 @@ export async function vistaHome(contenedor) {
             <span aria-hidden="true">·</span> Leer aviso de privacidad
           </a>
         </div>
-        <aside class="hero-emblem" aria-label="Módulos de la plataforma">
-          <div class="hero-emblem-seal">${icon('award')}</div>
-          <span class="hero-emblem-kicker">Licenciatura en Informática</span>
-          <strong>Trayectorias que inspiran</strong>
-          <span class="hero-emblem-rule"></span>
-          <span class="hero-emblem-caption">Logros · Eventos · Participaciones · CV digital</span>
-        </div>
+        <aside class="hero-insignia" aria-label="Distinción al mérito estudiantil">
+          <div class="hero-insignia-cabecera">
+            <span>${icon('award')} Distinción al mérito</span>
+            <span class="hero-insignia-sello">Portal oficial</span>
+          </div>
+          <div>
+            <h2>Excelencia reconocida, trayectorias que inspiran</h2>
+            <p>
+              Los logros se publican tras su revisión y con autorización de sus titulares.
+              Consulta la trayectoria y evidencia disponible de cada estudiante.
+            </p>
+          </div>
+          <div class="hero-insignia-cifras">
+            <div>
+              <strong id="home-logros-publicados">—</strong>
+              <span>Logros publicados</span>
+            </div>
+            <div>
+              <strong id="home-eventos-proximos">—</strong>
+              <span>Próximos eventos</span>
+            </div>
+          </div>
+          <a href="#/aviso-privacidad">${icon('shield')} Privacidad y consentimiento</a>
+        </aside>
       </div>
     </section>
 
@@ -110,6 +127,9 @@ export async function vistaHome(contenedor) {
   `;
 
   const res = await api.get('/estadisticas');
+
+  document.getElementById('home-logros-publicados').textContent = res.cifras.logros;
+  document.getElementById('home-eventos-proximos').textContent = res.proximosEventos.length;
 
   // Cifras
   const etiquetas = { estudiantes: 'Estudiantes destacados', eventos: 'Eventos registrados', logros: 'Logros y reconocimientos', galeria: 'Fotografías publicadas' };
