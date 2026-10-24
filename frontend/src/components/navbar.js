@@ -35,13 +35,19 @@ function enlaceUsuario() {
 export function renderNavbar() {
   const navbar = document.getElementById('navbar');
   navbar.innerHTML = `
+    <div class="portal-topline">
+      <div class="contenedor portal-topline-inner">
+        <span><i aria-hidden="true"></i> Portal Académico y Distinción al Mérito</span>
+        <span>Licenciatura en Informática</span>
+      </div>
+    </div>
     <nav class="navbar" aria-label="Navegación principal">
       <div class="contenedor navbar-inner">
         <a class="marca" href="#/">
           <img src="/public/img/logo.svg" alt="Logotipo Informática Destaca" />
           <span>
-            Informática <span style="color:var(--c-primario)">Destaca</span>
-            <span class="marca-sub">Licenciatura en Informática</span>
+            Informática Destaca
+            <span class="marca-sub">Excelencia y liderazgo académico</span>
           </span>
         </a>
 
@@ -81,9 +87,14 @@ export function renderNavbar() {
   btnMenu?.addEventListener('click', () => {
     const abierto = menuMovil.classList.toggle('abierto');
     btnMenu.setAttribute('aria-expanded', String(abierto));
+    btnMenu.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
   });
   menuMovil?.querySelectorAll('a[href^="#"]').forEach((a) =>
-    a.addEventListener('click', () => menuMovil.classList.remove('abierto'))
+    a.addEventListener('click', () => {
+      menuMovil.classList.remove('abierto');
+      btnMenu?.setAttribute('aria-expanded', 'false');
+      btnMenu?.setAttribute('aria-label', 'Abrir menú');
+    })
   );
 
   navbar.querySelector('#btn-salir')?.addEventListener('click', salir);

@@ -135,12 +135,30 @@ export function verEvidencia(evidencia) {
     } else if (evidencia.tipo === 'Video') {
       const embed = evidenciaEmbed(evidencia.urlExterna);
       cuerpo = embed
-        ? `<iframe src="${esc(embed)}" title="${esc(evidencia.titulo)}" allowfullscreen allow="autoplay; encrypted-media"></iframe>`
-        : `<video src="${esc(url)}" controls autoplay></video>`;
+        ? `<div class="lightbox-video">
+             <iframe src="${esc(embed)}" title="${esc(evidencia.titulo)}" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+             <a class="btn btn-secundario" href="${esc(evidencia.urlExterna)}" target="_blank" rel="noopener noreferrer">
+               Si el reproductor no inicia, abrir video externo ${icon('external', '')}
+             </a>
+           </div>`
+        : evidencia.archivoUrl
+          ? `<video src="${esc(url)}" controls autoplay></video>`
+          : `<div class="panel" style="text-align:center">
+               ${icon('video', '')}
+               <p>No se puede insertar este video en el visor.</p>
+               <a class="btn btn-primario" href="${esc(evidencia.urlExterna)}" target="_blank" rel="noopener noreferrer">
+                 Abrir video externo ${icon('external', '')}
+               </a>
+             </div>`;
     } else {
       const embed = evidenciaEmbed(evidencia.urlExterna);
       cuerpo = embed
-        ? `<iframe src="${esc(embed)}" title="${esc(evidencia.titulo)}" allowfullscreen allow="autoplay; encrypted-media"></iframe>`
+        ? `<div class="lightbox-video">
+             <iframe src="${esc(embed)}" title="${esc(evidencia.titulo)}" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+             <a class="btn btn-secundario" href="${esc(evidencia.urlExterna)}" target="_blank" rel="noopener noreferrer">
+               Si el reproductor no inicia, abrir enlace externo ${icon('external', '')}
+             </a>
+           </div>`
         : `<div class="panel" style="text-align:center">
              ${icon('link', '')}
              <p>Esta evidencia es un enlace externo.</p>

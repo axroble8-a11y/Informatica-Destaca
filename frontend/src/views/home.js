@@ -5,17 +5,29 @@ import { tarjetaEvento, tarjetaLogro, itemGaleria, verEvidencia } from '../compo
 export async function vistaHome(contenedor) {
   contenedor.innerHTML = `
     <section class="hero">
-      <div class="hero-contenido">
-        <span class="etiqueta-hero">${icon('graduate')} Licenciatura en Informática</span>
-        <h1>Informática <span class="codigo-mono">Destaca</span></h1>
-        <p>
-          La plataforma que reconoce el talento de nuestros estudiantes: difunde sus logros,
-          documenta los eventos académicos y tecnológicos, y construye la trayectoria
-          profesional de cada estudiante como currículum digital.
-        </p>
-        <div class="grupo-botones">
-          <a class="btn btn-primario btn-lg" href="#/cuadro-honor">${icon('trophy')} Ver Cuadro de Honor</a>
-          <a class="btn btn-secundario btn-lg" href="#/perfiles" style="background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.35)">${icon('users')} Conocer estudiantes</a>
+      <div class="hero-layout">
+        <div class="hero-contenido">
+          <span class="etiqueta-hero">${icon('graduate')} Portal institucional de honores y difusión tecnológica</span>
+          <h1>Excelencia, Investigación y Liderazgo en <span class="codigo-mono">Informática</span></h1>
+          <p>
+            Portal oficial para reconocer los logros de la comunidad, consultar eventos y construir
+            una trayectoria académica verificable como currículum digital.
+          </p>
+          <div class="grupo-botones">
+            <a class="btn btn-primario btn-lg" href="#/cuadro-honor">${icon('trophy')} Explorar el Cuadro de Honor</a>
+            <a class="btn btn-secundario btn-lg" href="#/eventos">${icon('calendar')} Consultar eventos</a>
+          </div>
+          <a class="hero-privacy" href="#/aviso-privacidad">
+            ${icon('shield')} Datos y evidencias se publican con autorización de sus titulares
+            <span aria-hidden="true">·</span> Leer aviso de privacidad
+          </a>
+        </div>
+        <aside class="hero-emblem" aria-label="Módulos de la plataforma">
+          <div class="hero-emblem-seal">${icon('award')}</div>
+          <span class="hero-emblem-kicker">Licenciatura en Informática</span>
+          <strong>Trayectorias que inspiran</strong>
+          <span class="hero-emblem-rule"></span>
+          <span class="hero-emblem-caption">Logros · Eventos · Participaciones · CV digital</span>
         </div>
       </div>
     </section>
