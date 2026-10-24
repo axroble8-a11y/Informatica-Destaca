@@ -73,11 +73,12 @@ export const api = {
   delete: (ruta) => peticion(ruta, { metodo: 'DELETE' }),
 };
 
-/** Convierte rutas relativas de archivos subidos (/uploads/...) en absolutas. */
+/** Normaliza las rutas públicas de imágenes y archivos subidos. */
 export function urlAbsoluta(url) {
   if (!url) return '';
   if (url.startsWith('http') || url.startsWith('data:')) return url;
   if (url.startsWith('/uploads')) return `${API_BASE}${url}`;
+  if (url.startsWith('/img/')) return `/public${url}`;
   return url;
 }
 
