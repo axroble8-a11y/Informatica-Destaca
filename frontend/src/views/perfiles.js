@@ -2,6 +2,7 @@ import { api, obtenerCatalogos } from '../js/api.js';
 import { icon, esc, opcionesSelect, estadoVacio } from '../js/ui.js';
 import { tarjetaEstudiante } from '../components/cards.js';
 import { montarPaginacion } from '../components/pagination.js';
+import { PERFIL_NESTOR, htmlTarjetaPerfilDestacado } from '../components/cuadroHonorDestacados.js';
 
 const estado = { page: 1, q: '', semestre: '' };
 
@@ -34,6 +35,12 @@ export async function vistaPerfiles(contenedor) {
       </div>
 
       <p class="texto-tenue" id="fp-conteo" aria-live="polite"></p>
+      <section id="fp-perfil-destacado" class="seccion" aria-labelledby="fp-destacado-titulo">
+        <h2 id="fp-destacado-titulo">Perfil destacado</h2>
+        <div class="rejilla rejilla-2">
+          ${htmlTarjetaPerfilDestacado(PERFIL_NESTOR)}
+        </div>
+      </section>
       <div id="fp-lista" class="mt-2"></div>
       <div id="fp-paginacion"></div>
     </section>
@@ -42,11 +49,26 @@ export async function vistaPerfiles(contenedor) {
   const $ = (id) => document.getElementById(id);
   let timer = null;
 
+  function actualizarPerfilDestacado() {
+    const coincideNombre = PERFIL_NESTOR.nombre.toLocaleLowerCase('es-MX').includes(estado.q.toLocaleLowerCase('es-MX'));
+    document.getElementById('fp-perfil-destacado').hidden = !coincideNombre || Boolean(estado.semestre);
+  }
+
   $('fp-q').addEventListener('input', () => {
     clearTimeout(timer);
-    timer = setTimeout(() => { estado.q = $('fp-q').value.trim(); estado.page = 1; cargar(); }, 350);
+    timer = setTimeout(() => {
+      estado.q = $('fp-q').value.trim();
+      estado.page = 1;
+      actualizarPerfilDestacado();
+      cargar();
+    }, 350);
   });
-  $('fp-semestre').addEventListener('change', () => { estado.semestre = $('fp-semestre').value; estado.page = 1; cargar(); });
+  $('fp-semestre').addEventListener('change', () => {
+    estado.semestre = $('fp-semestre').value;
+    estado.page = 1;
+    actualizarPerfilDestacado();
+    cargar();
+  });
 
   async function cargar() {
     const lista = document.getElementById('fp-lista');

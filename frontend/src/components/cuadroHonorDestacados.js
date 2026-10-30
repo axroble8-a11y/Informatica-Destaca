@@ -67,7 +67,21 @@ export const PERFILES_EJEMPLO = [
     tecnologias: ['Figma', 'HTML', 'Accesibilidad web'],
     avatar: 'avatar-renata.svg',
   },
+  {
+    nombre: 'Nestor Axel Robledo Garduño',
+    generacion: 'Información académica por completar',
+    area: 'Licenciatura en Informática',
+    premios: [],
+    participaciones: [],
+    proyecto: '',
+    descripcion: '',
+    tecnologias: [],
+    avatar: 'avatar-nestor.png',
+    perfilPendiente: true,
+  },
 ];
+
+export const PERFIL_NESTOR = PERFILES_EJEMPLO.find((perfil) => perfil.perfilPendiente);
 
 function tarjetaPerfil(perfil, indice) {
   const perfilId = `perfil-ejemplo-${indice + 1}`;
@@ -80,7 +94,7 @@ function tarjetaPerfil(perfil, indice) {
       <div class="honor-perfil-cabecera">
         <img
           src="/public/img/avatars/${esc(perfil.avatar)}"
-          alt="Avatar ilustrativo de ${esc(perfil.nombre)}"
+          alt="${perfil.perfilPendiente ? 'Fotografía' : 'Avatar ilustrativo'} de ${esc(perfil.nombre)}"
           loading="lazy"
         />
         <div>
@@ -90,25 +104,29 @@ function tarjetaPerfil(perfil, indice) {
         </div>
       </div>
 
-      <div class="honor-perfil-bloque honor-perfil-premios" aria-labelledby="${logrosId}">
-        <h4 id="${logrosId}">${icon('trophy')} Premios y galardones</h4>
-        <ul>${perfil.premios.map((premio) => `<li>${icon('award')} ${esc(premio)}</li>`).join('')}</ul>
-      </div>
+      ${perfil.perfilPendiente ? `
+        <p class="honor-perfil-pendiente">${icon('info')} Reconocimientos, participaciones y proyectos por agregar.</p>
+      ` : `
+        <div class="honor-perfil-bloque honor-perfil-premios" aria-labelledby="${logrosId}">
+          <h4 id="${logrosId}">${icon('trophy')} Premios y galardones</h4>
+          <ul>${perfil.premios.map((premio) => `<li>${icon('award')} ${esc(premio)}</li>`).join('')}</ul>
+        </div>
 
-      <div class="honor-perfil-bloque">
-        <h4 id="${participacionesId}">${icon('users')} Participaciones oficiales</h4>
-        <ul class="honor-perfil-etiquetas" aria-labelledby="${participacionesId}">
-          ${perfil.participaciones.map((participacion) => `<li>${esc(participacion)}</li>`).join('')}
-        </ul>
-      </div>
+        <div class="honor-perfil-bloque">
+          <h4 id="${participacionesId}">${icon('users')} Participaciones oficiales</h4>
+          <ul class="honor-perfil-etiquetas" aria-labelledby="${participacionesId}">
+            ${perfil.participaciones.map((participacion) => `<li>${esc(participacion)}</li>`).join('')}
+          </ul>
+        </div>
 
-      <div class="honor-perfil-proyecto" aria-labelledby="${proyectoId}">
-        <h4 id="${proyectoId}">Proyecto: ${esc(perfil.proyecto)}</h4>
-        <p>${esc(perfil.descripcion)}</p>
-        <ul aria-label="Tecnologías del proyecto">
-          ${perfil.tecnologias.map((tecnologia) => `<li>${esc(tecnologia)}</li>`).join('')}
-        </ul>
-      </div>
+        <div class="honor-perfil-proyecto" aria-labelledby="${proyectoId}">
+          <h4 id="${proyectoId}">Proyecto: ${esc(perfil.proyecto)}</h4>
+          <p>${esc(perfil.descripcion)}</p>
+          <ul aria-label="Tecnologías del proyecto">
+            ${perfil.tecnologias.map((tecnologia) => `<li>${esc(tecnologia)}</li>`).join('')}
+          </ul>
+        </div>
+      `}
 
       <a class="honor-perfil-enlace" href="#/perfiles/destacado/${indice + 1}">
         Explorar perfil y trayectoria ${icon('external')}
@@ -136,15 +154,43 @@ export function htmlCuadroHonorDestacados(id = 'cuadro-honor-destacados') {
           </button>
         </div>
       </div>
-      <p class="honor-destacados-nota">${icon('info')} Perfiles y reconocimientos de ejemplo; reemplázalos con información real autorizada antes de publicar.</p>
+      <p class="honor-destacados-nota">${icon('info')} Los datos de perfiles de ejemplo están identificados; completa y valida la trayectoria pendiente con información autorizada.</p>
       <div class="honor-carrusel-ventana" tabindex="0" aria-label="Perfiles académicos destacados, usa las flechas para recorrer">
         <div class="honor-carrusel-pista">
           ${PERFILES_EJEMPLO.map(tarjetaPerfil).join('')}
         </div>
       </div>
       <div class="honor-carrusel-progreso" aria-hidden="true"><span></span></div>
-      <p class="honor-destacados-pie">Mostrando <span class="honor-carrusel-rango"></span> · ${PERFILES_EJEMPLO.length} perfiles de ejemplo</p>
+      <p class="honor-destacados-pie">Mostrando <span class="honor-carrusel-rango"></span> · ${PERFILES_EJEMPLO.filter((perfil) => !perfil.perfilPendiente).length} perfiles de ejemplo y ${PERFILES_EJEMPLO.filter((perfil) => perfil.perfilPendiente).length} trayectoria(s) por completar</p>
     </section>
+  `;
+}
+
+export function htmlTarjetaPerfilDestacado(perfil) {
+  const numero = PERFILES_EJEMPLO.indexOf(perfil) + 1;
+  return `
+    <article class="tarjeta">
+      <a class="tarjeta-enlace" href="#/perfiles/destacado/${numero}">
+        <div class="tarjeta-estudiante">
+          <img
+            src="/public/img/avatars/${esc(perfil.avatar)}"
+            alt="Fotografía de ${esc(perfil.nombre)}"
+            loading="lazy"
+          />
+          <div>
+            <h3>${esc(perfil.nombre)}</h3>
+            <div class="texto-pequeno texto-tenue">${esc(perfil.area)}</div>
+          </div>
+        </div>
+        <div class="tarjeta-cuerpo" style="padding-top:0">
+          <p class="descripcion">Perfil destacado. Trayectoria académica y reconocimientos por completar.</p>
+          <div class="tarjeta-pie">
+            <span>Leer perfil destacado</span>
+            ${icon('chevron-right')}
+          </div>
+        </div>
+      </a>
+    </article>
   `;
 }
 
