@@ -1,6 +1,6 @@
 import { esc, icon } from '../js/ui.js';
 
-const PERFILES_EJEMPLO = [
+export const PERFILES_EJEMPLO = [
   {
     nombre: 'Valeria Morales R.',
     generacion: '2022 · 9.º ciclo',
@@ -110,7 +110,7 @@ function tarjetaPerfil(perfil, indice) {
         </ul>
       </div>
 
-      <a class="honor-perfil-enlace" href="#/perfiles">
+      <a class="honor-perfil-enlace" href="#/perfiles/destacado/${indice + 1}">
         Explorar perfil y trayectoria ${icon('external')}
       </a>
     </article>
