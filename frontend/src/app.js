@@ -13,6 +13,7 @@ import { vistaCuadroHonor } from './views/cuadroHonor.js';
 import { vistaPerfiles } from './views/perfiles.js';
 import { vistaPerfilDetalle } from './views/perfilDetalle.js';
 import { vistaEventos } from './views/eventos.js';
+import { vistaCertamenes } from './views/certamenes.js';
 import { vistaEventoDetalle } from './views/eventoDetalle.js';
 import { vistaGaleria } from './views/galeria.js';
 import { vistaBuscador } from './views/buscador.js';
@@ -47,6 +48,7 @@ async function main() {
   registrar('/perfiles', { vista: vistaPerfiles });
   registrar('/perfiles/:id', { vista: vistaPerfilDetalle });
   registrar('/eventos', { vista: vistaEventos });
+  registrar('/certamenes', { vista: vistaCertamenes });
   registrar('/eventos/:id', { vista: vistaEventoDetalle });
   registrar('/galeria', { vista: vistaGaleria });
   registrar('/buscador', { vista: vistaBuscador });

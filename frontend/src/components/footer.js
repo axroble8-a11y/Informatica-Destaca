@@ -27,6 +27,7 @@ export function renderFooter() {
               <li><a href="#/cuadro-honor">Cuadro de Honor</a></li>
               <li><a href="#/perfiles">Perfiles estudiantiles</a></li>
               <li><a href="#/eventos">Eventos</a></li>
+              <li><a href="#/certamenes">Certámenes</a></li>
               <li><a href="#/galeria">Galería multimedia</a></li>
               <li><a href="#/buscador">Buscador</a></li>
               <li><a href="#/demostracion">Flujo de demostración</a></li>

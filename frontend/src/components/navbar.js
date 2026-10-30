@@ -7,6 +7,7 @@ const MODULOS = [
   { ruta: '/buscador', texto: 'Buscador & Filtros', icono: 'search' },
   { ruta: '/perfiles', texto: 'Perfil & CV Digital', icono: 'user' },
   { ruta: '/eventos', rutasActivas: ['/galeria'], texto: 'Eventos & Galería', icono: 'calendar' },
+  { ruta: '/certamenes', texto: 'Certámenes', icono: 'trophy' },
   { ruta: '/admin', texto: 'Gestión y Auditoría', icono: 'dashboard' },
   { ruta: '/demostracion', texto: 'Flujo de Demostración', icono: 'check-circle' },
 ];

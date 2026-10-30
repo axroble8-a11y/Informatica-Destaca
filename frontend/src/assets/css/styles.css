@@ -2587,3 +2587,264 @@ table.tabla {
     margin-left: 0;
   }
 }
+
+/* ---------- Certámenes ---------- */
+.certamen-portada {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio-lg);
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(196, 153, 83, 0.17), transparent 50%),
+    linear-gradient(135deg, #fff 20%, #faf6f0);
+  box-shadow: var(--sombra-md);
+}
+
+.certamen-portada-contenido .etiqueta-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.85rem;
+  color: var(--c-primario);
+  font-size: 0.83rem;
+  font-weight: 700;
+}
+
+.certamen-portada-contenido h1 {
+  max-width: 680px;
+  color: var(--c-primario-oscuro);
+}
+
+.certamen-portada-contenido > p {
+  max-width: 640px;
+  color: var(--c-texto-suave);
+  line-height: 1.7;
+}
+
+.certamen-fecha {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.35rem 0;
+  color: var(--c-primario);
+}
+
+.certamen-fecha > .icono {
+  width: 24px;
+  height: 24px;
+}
+
+.certamen-fecha span,
+.certamen-fecha small {
+  display: block;
+}
+
+.certamen-fecha small {
+  margin-top: 0.18rem;
+  color: var(--c-texto-suave);
+}
+
+.certamen-enlace-resultados {
+  display: inline-block;
+  margin-left: 0.75rem;
+  color: var(--c-primario);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.certamen-cartel {
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 0.55rem;
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio);
+  background: #fff;
+  box-shadow: var(--sombra-lg);
+}
+
+.certamen-cartel img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radio-sm);
+}
+
+.certamen-cartel figcaption {
+  padding: 0.55rem 0.35rem 0.15rem;
+  color: var(--c-texto-suave);
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+.certamen-seccion {
+  scroll-margin-top: calc(var(--altura-navbar) + 1.5rem);
+}
+
+.certamen-ganadores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 1.1rem;
+}
+
+.certamen-premio {
+  overflow: hidden;
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio);
+  background: var(--c-blanco);
+  box-shadow: var(--sombra-sm);
+}
+
+.certamen-premio-fotos {
+  display: flex;
+  min-height: 240px;
+  height: 300px;
+  background: #f3eff0;
+}
+
+.certamen-premio-fotos img {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  object-fit: contain;
+}
+
+.certamen-premio-fotos img + img {
+  border-left: 1px solid #fff;
+}
+
+.certamen-premio-cuerpo {
+  padding: 1rem 1.1rem 1.2rem;
+}
+
+.certamen-premio-cuerpo .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.certamen-premio-cuerpo .badge .icono {
+  width: 15px;
+  height: 15px;
+}
+
+.certamen-premio-cuerpo h3 {
+  margin: 0.65rem 0 0;
+}
+
+.certamen-convocatoria {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio);
+  background: var(--c-blanco);
+  box-shadow: var(--sombra-sm);
+}
+
+.certamen-convocatoria-info {
+  display: grid;
+  align-content: start;
+  gap: 1.2rem;
+}
+
+.certamen-dato {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.certamen-dato > .icono {
+  flex: 0 0 20px;
+  margin-top: 0.1rem;
+  color: var(--c-primario);
+}
+
+.certamen-dato strong,
+.certamen-dato span {
+  display: block;
+}
+
+.certamen-dato span {
+  margin-top: 0.2rem;
+  color: var(--c-texto-suave);
+}
+
+.certamen-areas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  gap: 0.7rem 1rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.certamen-areas li,
+.certamen-instruccion {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: var(--c-texto-suave);
+  font-size: 0.9rem;
+}
+
+.certamen-areas .icono,
+.certamen-instruccion .icono {
+  flex: 0 0 18px;
+  color: var(--c-primario);
+}
+
+.certamen-instruccion {
+  margin: 0;
+  padding: 0.85rem;
+  border-radius: var(--radio-sm);
+  background: #faf6f0;
+}
+
+.certamen-cartel-enlace {
+  align-self: start;
+  display: grid;
+  justify-items: center;
+  gap: 0.65rem;
+  color: var(--c-primario);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.certamen-cartel-enlace img {
+  display: block;
+  width: min(100%, 340px);
+  height: auto;
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio-sm);
+}
+
+.certamen-cartel-enlace span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+@media (min-width: 900px) {
+  .certamen-portada {
+    grid-template-columns: minmax(0, 1.2fr) minmax(250px, 0.8fr);
+  }
+
+  .certamen-convocatoria {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 0.7fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .certamen-enlace-resultados {
+    margin: 0.85rem 0 0;
+  }
+
+  .certamen-premio-fotos {
+    height: 250px;
+  }
+}

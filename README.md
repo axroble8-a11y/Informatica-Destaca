@@ -52,7 +52,7 @@ informatica-destaca/
 │   │   ├── assets/css/        # styles.css (sistema de diseño) + print.css (CV imprimible)
 │   │   ├── components/        # navbar, footer, tarjetas, paginación
 │   │   ├── views/             # home, cuadro de honor, perfiles + CV, eventos, galería,
-│   │   │                      # buscador, login, registro, aviso de privacidad, guía demo y mi espacio
+│   │   │                      # certámenes, buscador, login, registro, aviso de privacidad, guía demo y mi espacio
 │   │   └── admin/             # panel: dashboard, CRUDs, usuarios, aprobaciones
 │   └── package.json
 └── README.md
