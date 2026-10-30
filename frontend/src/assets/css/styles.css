@@ -2848,3 +2848,232 @@ table.tabla {
     height: 250px;
   }
 }
+
+.certamen-portada-nota {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  max-width: 390px;
+  margin: 0 auto;
+  padding: 1.15rem;
+  border: 1px solid var(--pantone-468c);
+  border-radius: var(--radio);
+  background: #fffaf1;
+  color: var(--c-texto-suave);
+}
+
+.certamen-portada-nota > .icono {
+  flex: 0 0 20px;
+  color: var(--c-primario);
+}
+
+.certamen-portada-nota p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.certamen-historial {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.certamen-anio {
+  scroll-margin-top: calc(var(--altura-navbar) + 1.5rem);
+  overflow: hidden;
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio);
+  background: var(--c-blanco);
+  box-shadow: var(--sombra-sm);
+}
+
+.certamen-anio-encabezado {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.95rem 1.1rem;
+  border-bottom: 1px solid var(--c-borde);
+  background: linear-gradient(90deg, #faf6f0, #fff);
+}
+
+.certamen-anio-numero {
+  display: grid;
+  width: 52px;
+  height: 44px;
+  place-items: center;
+  border-radius: var(--radio-sm);
+  background: var(--c-primario);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.certamen-anio-encabezado h3 {
+  margin: 0;
+  color: var(--c-primario-oscuro);
+}
+
+.certamen-anio-secciones {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.certamen-anio-bloque {
+  min-width: 0;
+  padding: 1rem;
+}
+
+.certamen-anio-bloque + .certamen-anio-bloque {
+  border-top: 1px solid var(--c-borde);
+}
+
+.certamen-anio-bloque > h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.8rem;
+  color: var(--c-primario-oscuro);
+}
+
+.certamen-anio-bloque > h4 .icono {
+  width: 18px;
+  height: 18px;
+  color: var(--c-primario);
+}
+
+.certamen-espacio-vacio {
+  display: flex;
+  min-height: 110px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 1rem;
+  border: 1px dashed #cbbfc1;
+  border-radius: var(--radio-sm);
+  background: #fbf9f8;
+  color: var(--c-texto-tenue);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.certamen-espacio-vacio .icono {
+  flex: 0 0 20px;
+  color: var(--c-primario);
+}
+
+.certamen-fotos-ganadores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  gap: 0.65rem;
+}
+
+.certamen-foto-ganador {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio-sm);
+  background: #f7f4f4;
+}
+
+.certamen-foto-ganador-imagenes {
+  display: flex;
+  height: 180px;
+}
+
+.certamen-foto-ganador-imagenes img {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  object-fit: contain;
+}
+
+.certamen-foto-ganador-imagenes img + img {
+  border-left: 1px solid #fff;
+}
+
+.certamen-foto-ganador figcaption {
+  padding: 0.6rem 0.7rem;
+  border-top: 1px solid var(--c-borde);
+  color: var(--c-primario-oscuro);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.certamen-convocatoria-imagen {
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+  color: var(--c-primario);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.certamen-convocatoria-imagen img {
+  display: block;
+  width: min(100%, 270px);
+  height: auto;
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio-sm);
+}
+
+.certamen-convocatoria-imagen span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.certamen-datos-anuales {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.certamen-datos-anuales p,
+.certamen-ayuda-qr {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--c-texto-suave);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.certamen-datos-anuales .icono,
+.certamen-ayuda-qr .icono {
+  flex: 0 0 17px;
+  color: var(--c-primario);
+}
+
+.certamen-ayuda-qr {
+  margin-top: 0.75rem;
+  padding: 0.7rem;
+  border-radius: var(--radio-sm);
+  background: #faf6f0;
+}
+
+.certamen-anio-bloque > h4:not(:first-child) {
+  margin-top: 1rem;
+}
+
+@media (min-width: 760px) {
+  .certamen-portada {
+    grid-template-columns: minmax(0, 1.2fr) minmax(250px, 0.8fr);
+  }
+
+  .certamen-anio-secciones {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .certamen-anio-bloque + .certamen-anio-bloque {
+    border-top: 0;
+    border-left: 1px solid var(--c-borde);
+  }
+}
+
+@media (max-width: 640px) {
+  .certamen-portada-nota {
+    margin: 0;
+  }
+}

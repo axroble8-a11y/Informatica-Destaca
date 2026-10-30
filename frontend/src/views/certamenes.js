@@ -1,60 +1,154 @@
 import { icon } from '../js/ui.js';
 
-const PREMIACION_2025 = [
+const ANIOS_CERTAMEN = [
   {
-    lugar: 'Primer lugar',
-    imagenes: [
+    anio: 2022,
+    convocatoria: null,
+    ganadores: [],
+  },
+  {
+    anio: 2023,
+    convocatoria: null,
+    ganadores: [],
+  },
+  {
+    anio: 2024,
+    convocatoria: null,
+    ganadores: [],
+  },
+  {
+    anio: 2025,
+    convocatoria: null,
+    ganadores: [
       {
-        src: '/public/img/certamenes/ganadores-2025-primer-lugar-equipo.jpg',
-        alt: 'Equipo reconocido con el primer lugar del certamen 2025',
+        lugar: 'Primer lugar',
+        imagenes: [
+          {
+            src: '/public/img/certamenes/ganadores-2025-primer-lugar-equipo.jpg',
+            alt: 'Equipo reconocido con el primer lugar del certamen 2025',
+          },
+          {
+            src: '/public/img/certamenes/ganadores-2025-primer-lugar.jpg',
+            alt: 'Estudiantes reconocidos con el primer lugar del certamen 2025',
+          },
+        ],
       },
       {
-        src: '/public/img/certamenes/ganadores-2025-primer-lugar.jpg',
-        alt: 'Estudiantes reconocidos con el primer lugar del certamen 2025',
+        lugar: 'Segundo lugar',
+        imagenes: [
+          {
+            src: '/public/img/certamenes/ganadores-2025-segundo-lugar.jpg',
+            alt: 'Equipo reconocido con el segundo lugar del certamen 2025',
+          },
+        ],
+      },
+      {
+        lugar: 'Tercer lugar',
+        imagenes: [
+          {
+            src: '/public/img/certamenes/ganadores-2025-tercer-lugar.jpg',
+            alt: 'Estudiantes reconocidas con el tercer lugar del certamen 2025',
+          },
+        ],
       },
     ],
   },
   {
-    lugar: 'Segundo lugar',
-    imagenes: [
-      {
-        src: '/public/img/certamenes/ganadores-2025-segundo-lugar.jpg',
-        alt: 'Equipo reconocido con el segundo lugar del certamen 2025',
-      },
-    ],
-  },
-  {
-    lugar: 'Tercer lugar',
-    imagenes: [
-      {
-        src: '/public/img/certamenes/ganadores-2025-tercer-lugar.jpg',
-        alt: 'Estudiantes reconocidas con el tercer lugar del certamen 2025',
-      },
-    ],
+    anio: 2026,
+    convocatoria: {
+      imagen: '/public/img/certamenes/convocatoria-2026.jpg',
+      alt: 'Convocatoria del 5.º Certamen Interinstitucional de Investigación, Innovación, Desarrollo Tecnológico y Emprendimiento 2026',
+      fecha: '4 de diciembre de 2026',
+      sede: 'Unidad de Estudios Superiores Ixtlahuaca',
+      areas: [
+        'Inteligencia artificial',
+        'Realidad aumentada y virtual',
+        'Ciencia de datos',
+        'Procesamiento de imágenes',
+        'Desarrollo web',
+        'Robótica',
+        'Tecnologías de la Industria 4.0',
+      ],
+    },
+    ganadores: [],
   },
 ];
 
-const AREAS_2026 = [
-  'Inteligencia artificial',
-  'Realidad aumentada y virtual',
-  'Ciencia de datos',
-  'Procesamiento de imágenes',
-  'Desarrollo web',
-  'Robótica',
-  'Tecnologías de la Industria 4.0',
-];
-
-function tarjetaGanadores({ lugar, imagenes }) {
+function espacioParaFoto(tipo, anio) {
+  const etiqueta = tipo === 'convocatoria'
+    ? `Imagen de convocatoria ${anio} por agregar`
+    : `Fotos de ganadores ${anio} por agregar`;
   return `
-    <article class="certamen-premio">
-      <div class="certamen-premio-fotos">
-        ${imagenes.map(({ src, alt }) => `
-          <img src="${src}" alt="${alt}" loading="lazy" />
-        `).join('')}
-      </div>
-      <div class="certamen-premio-cuerpo">
-        <span class="badge badge-primario">${icon('medal')} Certamen 2025</span>
-        <h3>${lugar}</h3>
+    <div class="certamen-espacio-vacio" role="note">
+      ${icon(tipo === 'convocatoria' ? 'image' : 'trophy')}
+      <span>${etiqueta}</span>
+    </div>
+  `;
+}
+
+function fotosGanadores(ganadores, anio) {
+  if (ganadores.length === 0) {
+    return espacioParaFoto('ganadores', anio);
+  }
+
+  return `
+    <div class="certamen-fotos-ganadores">
+      ${ganadores.map(({ lugar, imagenes }) => `
+        <figure class="certamen-foto-ganador">
+          <div class="certamen-foto-ganador-imagenes">
+            ${imagenes.map(({ src, alt }) => `
+              <img src="${src}" alt="${alt}" loading="lazy" />
+            `).join('')}
+          </div>
+          <figcaption>${lugar}</figcaption>
+        </figure>
+      `).join('')}
+    </div>
+  `;
+}
+
+function seccionAnual({ anio, convocatoria, ganadores }) {
+  const datosConvocatoria = convocatoria
+    ? `
+      <a
+        class="certamen-convocatoria-imagen"
+        href="${convocatoria.imagen}"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Abrir la convocatoria ${anio} completa"
+      >
+        <img src="${convocatoria.imagen}" alt="${convocatoria.alt}" loading="lazy" />
+        <span>${icon('external')} Abrir cartel completo</span>
+      </a>
+      ${convocatoria.fecha ? `
+        <div class="certamen-datos-anuales">
+          <p>${icon('calendar')} <span><strong>Fecha:</strong> ${convocatoria.fecha}</span></p>
+          <p>${icon('map-pin')} <span><strong>Sede:</strong> ${convocatoria.sede}</span></p>
+        </div>
+        <p class="certamen-ayuda-qr">${icon('info')} Escanea el código QR del cartel para consultar la convocatoria y el registro.</p>
+        <h4>Áreas para desarrollar tu proyecto</h4>
+        <ul class="certamen-areas">
+          ${convocatoria.areas.map((area) => `<li>${icon('check-circle')} ${area}</li>`).join('')}
+        </ul>
+      ` : ''}
+    `
+    : espacioParaFoto('convocatoria', anio);
+
+  return `
+    <article class="certamen-anio" id="certamen-${anio}" aria-labelledby="certamen-titulo-${anio}">
+      <header class="certamen-anio-encabezado">
+        <span class="certamen-anio-numero">${anio}</span>
+        <h3 id="certamen-titulo-${anio}">Certamen ${anio}</h3>
+      </header>
+      <div class="certamen-anio-secciones">
+        <section class="certamen-anio-bloque" aria-labelledby="convocatoria-titulo-${anio}">
+          <h4 id="convocatoria-titulo-${anio}">${icon('calendar')} Convocatoria</h4>
+          ${datosConvocatoria}
+        </section>
+        <section class="certamen-anio-bloque" aria-labelledby="ganadores-titulo-${anio}">
+          <h4 id="ganadores-titulo-${anio}">${icon('trophy')} Ganadores</h4>
+          ${fotosGanadores(ganadores, anio)}
+        </section>
       </div>
     </article>
   `;
@@ -66,69 +160,31 @@ export function vistaCertamenes(contenedor) {
       <div class="certamen-portada-contenido">
         <span class="etiqueta-hero">${icon('award')} Investigación · Innovación · Emprendimiento</span>
         <h1 id="certamen-titulo">Certámenes de Informática</h1>
-        <p>Celebramos las ideas, el talento y los proyectos que transforman nuestro entorno. Conoce a quienes destacaron en 2025 y consulta la convocatoria 2026.</p>
+        <p>Un recorrido por las convocatorias y los proyectos ganadores de cada edición, de 2022 a 2026.</p>
         <div class="certamen-fecha">
           ${icon('calendar')}
-          <span><strong>4 de diciembre de 2026</strong><small>5.º Certamen Interinstitucional · UES Ixtlahuaca</small></span>
+          <span><strong>Convocatoria 2026</strong><small>5.º Certamen Interinstitucional · UES Ixtlahuaca</small></span>
         </div>
-        <a class="btn btn-primario" href="#convocatoria-2026">${icon('image')} Ver convocatoria 2026</a>
-        <a class="certamen-enlace-resultados" href="#ganadores-2025">Conoce a los ganadores de 2025 ↓</a>
+        <a class="btn btn-primario" href="#certamen-2026">${icon('image')} Ver convocatoria 2026</a>
+        <a class="certamen-enlace-resultados" href="#certamen-2025">Ver ganadores de 2025 ↓</a>
       </div>
-      <figure class="certamen-cartel">
-        <img src="/public/img/certamenes/convocatoria-2026.jpg" alt="Convocatoria del 5.º Certamen Interinstitucional de Investigación, Innovación, Desarrollo Tecnológico y Emprendimiento 2026. Evento el 4 de diciembre de 2026." />
-        <figcaption>Convocatoria oficial · 2026</figcaption>
-      </figure>
+      <div class="certamen-portada-nota">
+        ${icon('info')}
+        <p>El historial incluye un espacio para la convocatoria y otro para los ganadores de cada año. Las fotos disponibles ya están colocadas; los espacios pendientes se pueden completar después.</p>
+      </div>
     </section>
 
-    <section class="seccion certamen-seccion" id="ganadores-2025" aria-labelledby="ganadores-titulo">
+    <section class="seccion certamen-seccion" aria-labelledby="historial-titulo">
       <div class="encabezado-seccion">
         <span class="icono-seccion">${icon('trophy')}</span>
         <div>
-          <h2 id="ganadores-titulo">Ganadores del Certamen 2025</h2>
-          <p>Reconocemos el talento y el trabajo de los equipos premiados.</p>
+          <h2 id="historial-titulo">Historial de certámenes 2022–2026</h2>
+          <p>Convocatoria y ganadores de cada edición.</p>
           <div class="linea-gradiente"></div>
         </div>
       </div>
-      <div class="certamen-ganadores">
-        ${PREMIACION_2025.map(tarjetaGanadores).join('')}
-      </div>
-    </section>
-
-    <section class="seccion certamen-seccion" id="convocatoria-2026" aria-labelledby="convocatoria-titulo">
-      <div class="encabezado-seccion">
-        <span class="icono-seccion">${icon('calendar')}</span>
-        <div>
-          <h2 id="convocatoria-titulo">Convocatoria 2026</h2>
-          <p>5.º Certamen Interinstitucional de Investigación, Innovación, Desarrollo Tecnológico y Emprendimiento de la Licenciatura en Informática.</p>
-          <div class="linea-gradiente"></div>
-        </div>
-      </div>
-      <div class="certamen-convocatoria">
-        <div class="certamen-convocatoria-info">
-          <div class="certamen-dato">
-            ${icon('calendar')}
-            <div><strong>Fecha del evento</strong><span>4 de diciembre de 2026</span></div>
-          </div>
-          <div class="certamen-dato">
-            ${icon('map-pin')}
-            <div><strong>Sede</strong><span>Unidad de Estudios Superiores Ixtlahuaca</span></div>
-          </div>
-          <div class="certamen-dato">
-            ${icon('users')}
-            <div><strong>Participación</strong><span>Escuelas invitadas de nivel superior y medio superior</span></div>
-          </div>
-          <div>
-            <h3>Áreas para desarrollar tu proyecto</h3>
-            <ul class="certamen-areas">
-              ${AREAS_2026.map((area) => `<li>${icon('check-circle')} ${area}</li>`).join('')}
-            </ul>
-          </div>
-          <p class="certamen-instruccion">${icon('info')} Escanea el código QR del cartel para consultar la convocatoria y el registro.</p>
-        </div>
-        <a class="certamen-cartel-enlace" href="/public/img/certamenes/convocatoria-2026.jpg" target="_blank" rel="noopener noreferrer" aria-label="Abrir el cartel completo de la convocatoria 2026">
-          <img src="/public/img/certamenes/convocatoria-2026.jpg" alt="Cartel completo de la convocatoria 2026 con código QR para registro y convocatoria" loading="lazy" />
-          <span>${icon('external')} Abrir cartel completo</span>
-        </a>
+      <div class="certamen-historial">
+        ${ANIOS_CERTAMEN.map(seccionAnual).join('')}
       </div>
     </section>
   `;
