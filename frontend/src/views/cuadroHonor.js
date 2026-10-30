@@ -2,6 +2,7 @@ import { api, obtenerCatalogos } from '../js/api.js';
 import { icon, esc, opcionesSelect, estadoVacio } from '../js/ui.js';
 import { tarjetaLogro } from '../components/cards.js';
 import { montarPaginacion } from '../components/pagination.js';
+import { htmlCuadroHonorDestacados, montarCarruselCuadroHonor } from '../components/cuadroHonorDestacados.js';
 
 const estado = { page: 1, q: '', categoria: '', tipo: '', destacado: false, desde: '', hasta: '' };
 
@@ -18,6 +19,8 @@ export async function vistaCuadroHonor(contenedor) {
         los hacen merecedores de este reconocimiento público.</p>
       </div>
     </section>
+
+    ${htmlCuadroHonorDestacados('cuadro-honor-perfiles')}
 
     <section class="seccion">
       <div class="panel-filtros sin-buscador" role="search">
@@ -104,5 +107,11 @@ export async function vistaCuadroHonor(contenedor) {
   }
 
   await cargar();
-  return { limpiar: () => clearTimeout(timer) };
+  const limpiarCarrusel = montarCarruselCuadroHonor(document.getElementById('cuadro-honor-perfiles'));
+  return {
+    limpiar: () => {
+      clearTimeout(timer);
+      limpiarCarrusel();
+    },
+  };
 }

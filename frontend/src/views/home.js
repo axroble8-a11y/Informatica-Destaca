@@ -1,6 +1,7 @@
 import { api } from '../js/api.js';
 import { icon, esc, formatoPeriodo, formatoFecha, skeleton, estadoVacio } from '../js/ui.js';
 import { tarjetaEvento, tarjetaLogro, itemGaleria, verEvidencia } from '../components/cards.js';
+import { htmlCuadroHonorDestacados, montarCarruselCuadroHonor } from '../components/cuadroHonorDestacados.js';
 
 export async function vistaHome(contenedor) {
   contenedor.innerHTML = `
@@ -48,6 +49,8 @@ export async function vistaHome(contenedor) {
         </aside>
       </div>
     </section>
+
+    ${htmlCuadroHonorDestacados('cuadro-honor-inicio')}
 
     <section class="seccion" id="seccion-cifras" aria-label="Cifras de la plataforma">
       <div class="cifras">
@@ -169,4 +172,6 @@ export async function vistaHome(contenedor) {
   } else {
     res.destacadas.forEach((evi) => galeriaEl.appendChild(itemGaleria(evi, { abrirDetalle: verEvidencia })));
   }
+
+  return { limpiar: montarCarruselCuadroHonor(document.getElementById('cuadro-honor-inicio')) };
 }

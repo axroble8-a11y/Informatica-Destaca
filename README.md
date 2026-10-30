@@ -50,7 +50,7 @@ informatica-destaca/
 │   │   ├── auth.js            # sesión, login, registro, roles
 │   │   ├── ui.js              # iconos SVG, toasts, modales, validación de formularios
 │   │   ├── assets/css/        # styles.css (sistema de diseño) + print.css (CV imprimible)
-│   │   ├── components/        # navbar, footer, tarjetas, paginación
+│   │   ├── components/        # navbar, footer, tarjetas, paginación y perfiles destacados del Cuadro de Honor
 │   │   ├── views/             # home, cuadro de honor, perfiles + CV, eventos, galería,
 │   │   │                      # certámenes, buscador, login, registro, aviso de privacidad, guía demo y mi espacio
 │   │   └── admin/             # panel: dashboard, CRUDs, usuarios, aprobaciones
