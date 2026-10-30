@@ -2,6 +2,26 @@ import { esc, icon } from '../js/ui.js';
 
 export const PERFILES_EJEMPLO = [
   {
+    id: 7,
+    nombre: 'Nestor Axel Robledo Garduño',
+    generacion: 'Estudiante desde 2022',
+    area: 'Licenciatura en Informática',
+    resumen: 'Estudiante de la Licenciatura en Informática desde 2022. Ganador del Certamen 2026, finalista en FECIEMN 2025 y participante en Hackatón 2024.',
+    distincion: 'Ganador del Certamen 2026',
+    premios: ['Ganador · Certamen 2026'],
+    participaciones: ['Participante y finalista · FECIEMN 2025', 'Participante · Hackatón 2024'],
+    experiencias: [
+      { tipo: 'Residencia profesional', organizacion: 'Inteligencia en Sistemas', lugar: 'Ciudad de México' },
+      { tipo: 'Servicio social', organizacion: 'Universidad Normal de Ixtlahuaca', lugar: '' },
+    ],
+    proyecto: '',
+    descripcion: '',
+    tecnologias: [],
+    avatar: 'avatar-nestor.png',
+    perfilPendiente: true,
+  },
+  {
+    id: 1,
     nombre: 'Valeria Morales R.',
     generacion: '2022 · 9.º ciclo',
     area: 'Inteligencia artificial',
@@ -13,6 +33,7 @@ export const PERFILES_EJEMPLO = [
     avatar: 'avatar-valeria.svg',
   },
   {
+    id: 2,
     nombre: 'Diego Sebastián Ríos',
     generacion: '2021 · egresado',
     area: 'Biotecnología computacional',
@@ -24,6 +45,7 @@ export const PERFILES_EJEMPLO = [
     avatar: 'avatar-diego.svg',
   },
   {
+    id: 3,
     nombre: 'Camila Andrea Thorne',
     generacion: '2023 · 7.º ciclo',
     area: 'Ingeniería robótica y control',
@@ -35,6 +57,7 @@ export const PERFILES_EJEMPLO = [
     avatar: 'avatar-renata.svg',
   },
   {
+    id: 4,
     nombre: 'Ana Sofía Ramírez Vega',
     generacion: '2022 · 8.º ciclo',
     area: 'Ciencia de datos',
@@ -46,6 +69,7 @@ export const PERFILES_EJEMPLO = [
     avatar: 'avatar-ana.svg',
   },
   {
+    id: 5,
     nombre: 'Emiliano Torres Salinas',
     generacion: '2021 · egresado',
     area: 'Computación en la nube',
@@ -57,6 +81,7 @@ export const PERFILES_EJEMPLO = [
     avatar: 'avatar-emiliano.svg',
   },
   {
+    id: 6,
     nombre: 'Renata Orozco Méndez',
     generacion: '2023 · 4.º ciclo',
     area: 'Diseño de experiencias de usuario',
@@ -67,24 +92,12 @@ export const PERFILES_EJEMPLO = [
     tecnologias: ['Figma', 'HTML', 'Accesibilidad web'],
     avatar: 'avatar-renata.svg',
   },
-  {
-    nombre: 'Nestor Axel Robledo Garduño',
-    generacion: 'Información académica por completar',
-    area: 'Licenciatura en Informática',
-    premios: [],
-    participaciones: [],
-    proyecto: '',
-    descripcion: '',
-    tecnologias: [],
-    avatar: 'avatar-nestor.png',
-    perfilPendiente: true,
-  },
 ];
 
 export const PERFIL_NESTOR = PERFILES_EJEMPLO.find((perfil) => perfil.perfilPendiente);
 
-function tarjetaPerfil(perfil, indice) {
-  const perfilId = `perfil-ejemplo-${indice + 1}`;
+function tarjetaPerfil(perfil) {
+  const perfilId = `perfil-ejemplo-${perfil.id}`;
   const logrosId = `${perfilId}-logros`;
   const participacionesId = `${perfilId}-participaciones`;
   const proyectoId = `${perfilId}-proyecto`;
@@ -105,7 +118,23 @@ function tarjetaPerfil(perfil, indice) {
       </div>
 
       ${perfil.perfilPendiente ? `
-        <p class="honor-perfil-pendiente">${icon('info')} Reconocimientos, participaciones y proyectos por agregar.</p>
+        <div class="honor-perfil-bloque honor-perfil-premios" aria-labelledby="${logrosId}">
+          <h4 id="${logrosId}">${icon('trophy')} Premios y galardones</h4>
+          <ul>${perfil.premios.map((premio) => `<li>${icon('award')} ${esc(premio)}</li>`).join('')}</ul>
+        </div>
+        <div class="honor-perfil-bloque">
+          <h4 id="${participacionesId}">${icon('users')} Participaciones oficiales</h4>
+          <ul class="honor-perfil-etiquetas" aria-labelledby="${participacionesId}">
+            ${perfil.participaciones.map((participacion) => `<li>${esc(participacion)}</li>`).join('')}
+          </ul>
+        </div>
+        ${perfil.experiencias.map((experiencia) => `
+          <div class="honor-perfil-proyecto" aria-label="${esc(experiencia.tipo)}">
+            <h4>${esc(experiencia.tipo)}</h4>
+            <p>${esc(experiencia.organizacion)}${experiencia.lugar ? ` · ${esc(experiencia.lugar)}` : ''}</p>
+          </div>
+        `).join('')}
+        <p class="honor-perfil-pendiente">${icon('info')} Proyectos, habilidades y áreas de interés pueden agregarse cuando compartas esos datos.</p>
       ` : `
         <div class="honor-perfil-bloque honor-perfil-premios" aria-labelledby="${logrosId}">
           <h4 id="${logrosId}">${icon('trophy')} Premios y galardones</h4>
@@ -128,7 +157,7 @@ function tarjetaPerfil(perfil, indice) {
         </div>
       `}
 
-      <a class="honor-perfil-enlace" href="#/perfiles/destacado/${indice + 1}">
+      <a class="honor-perfil-enlace" href="#/perfiles/destacado/${perfil.id}">
         Explorar perfil y trayectoria ${icon('external')}
       </a>
     </article>
@@ -167,10 +196,9 @@ export function htmlCuadroHonorDestacados(id = 'cuadro-honor-destacados') {
 }
 
 export function htmlTarjetaPerfilDestacado(perfil) {
-  const numero = PERFILES_EJEMPLO.indexOf(perfil) + 1;
   return `
     <article class="tarjeta">
-      <a class="tarjeta-enlace" href="#/perfiles/destacado/${numero}">
+      <a class="tarjeta-enlace" href="#/perfiles/destacado/${perfil.id}">
         <div class="tarjeta-estudiante">
           <img
             src="/public/img/avatars/${esc(perfil.avatar)}"
@@ -183,7 +211,7 @@ export function htmlTarjetaPerfilDestacado(perfil) {
           </div>
         </div>
         <div class="tarjeta-cuerpo" style="padding-top:0">
-          <p class="descripcion">Perfil destacado. Trayectoria académica y reconocimientos por completar.</p>
+          <p class="descripcion">${esc(perfil.resumen || 'Perfil destacado. Trayectoria académica y reconocimientos por completar.')}</p>
           <div class="tarjeta-pie">
             <span>Leer perfil destacado</span>
             ${icon('chevron-right')}
